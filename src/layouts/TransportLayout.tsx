@@ -1,10 +1,10 @@
 import { useState } from "react";
-import AppShell from "./AppShell";
-import ReportsDashboard from "../pages/ReportsDashboard";
-import DispatchBoard from "../pages/DispatchBoard";
-import CloseTrips from "../pages/CloseTrips";
-import MaintenanceBoard from "../pages/MaintenanceBoard";
-import ShiftAdmin from "../pages/ShiftAdmin";
+import AppShell from "../app/AppShell";
+import ReportsDashboard from "../modules/reports/pages/ReportsDashboard";
+import DispatchBoard from "../modules/dispatch/pages/DispatchBoard";
+import CloseTrips from "../modules/bookings/pages/CloseTrips";
+import MaintenanceBoard from "../modules/maintenance/pages/MaintenanceBoard";
+import ShiftAdmin from "../modules/shifts/pages/ShiftAdmin";
 
 export default function TransportLayout() {
   const [page, setPage] = useState<"reports" | "dispatch" | "close" | "maintenance" | "shifts">("dispatch");

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import AppShell from "./AppShell";
-import ReportsDashboard from "../pages/ReportsDashboard";
-import AdminUserRequests from "../pages/AdminUserRequests";
-import AuditLogs from "../pages/AuditLogs";
+import AppShell from "../app/AppShell";
+import ReportsDashboard from "../modules/reports/pages/ReportsDashboard";
+import AdminUserRequests from "../modules/users/pages/AdminUserRequests";
+import AuditLogs from "../modules/reports/pages/AuditLogs";
 
 export default function AdminLayout() {
   const [page, setPage] = useState<"reports" | "users" | "audit">("reports");

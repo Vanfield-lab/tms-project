@@ -1,30 +1,31 @@
-import { useState } from "react";
-import AppShell from "./AppShell";
-import CreateBookingV2 from "../pages/CreateBookingV2";
-import BookingsTable from "../pages/BookingsTable";
-import ReportMaintenance from "../pages/ReportMaintenance";
-import CreateFuelRequest from "../pages/CreateFuelRequest";
-import NewUserRequest from "../pages/NewUserRequest";
+// DepartmentLayout stays navItems-only (OK)
+import AppShell from "../app/AppShell";
+import CreateBookingV2 from "../modules/bookings/pages/CreateBookingV2";
+import BookingsTable from "../modules/bookings/pages/BookingsTable";
+import ReportMaintenance from "../modules/maintenance/pages/ReportMaintenance";
+import NewUserRequest from "../modules/users/pages/NewUserRequest";
+import CreateFuelRequest from "../modules/fuel/pages/CreateFuelRequest";
+import FuelRequests from "../modules/fuel/pages/FuelRequests";
 
 export default function DepartmentLayout() {
-  const [page, setPage] = useState<"new" | "my" | "maintenance" | "fuel" | "users">("new");
-
   return (
     <AppShell
       title="Department"
-      nav={[
-        { label: "New Booking", onClick: () => setPage("new") },
-        { label: "Bookings", onClick: () => setPage("my") },
-        { label: "Report Maintenance", onClick: () => setPage("maintenance") },
-        { label: "Fuel Request", onClick: () => setPage("fuel") },
-        { label: "Request User", onClick: () => setPage("users") },
+      navItems={[
+        { label: "New Booking", element: <CreateBookingV2 /> },
+        { label: "Bookings", element: <BookingsTable /> },
+        { label: "Report Maintenance", element: <ReportMaintenance /> },
+        {
+          label: "Fuel Request",
+          element: (
+            <div className="space-y-4">
+              <CreateFuelRequest />
+              <FuelRequests />
+            </div>
+          ),
+        },
+        { label: "Request User", element: <NewUserRequest /> },
       ]}
-    >
-      {page === "new" && <CreateBookingV2 />}
-      {page === "my" && <BookingsTable />}
-      {page === "maintenance" && <ReportMaintenance />}
-      {page === "fuel" && <CreateFuelRequest />}
-      {page === "users" && <NewUserRequest />}
-    </AppShell>
+    />
   );
 }

@@ -1,24 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth";
-import Login from "./pages/Login";
-import DashboardRouter from "./pages/DashboardRouter";
+// src/App.tsx
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import { routes } from "@/app/routes";
 
-function App() {
-  const { user, loading } = useAuth();
+function Routes() {
+  return useRoutes(routes);
+}
 
-  if (loading) return <div>Loading...</div>;
-
+export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {!user ? (
-          <Route path="*" element={<Login />} />
-        ) : (
-          <Route path="*" element={<DashboardRouter />} />
-        )}
-      </Routes>
+      <Routes />
     </BrowserRouter>
   );
 }
-
-export default App;

@@ -1,24 +1,16 @@
-import { useState } from "react";
-import AppShell from "./AppShell";
-import ReportsDashboard from "../pages/ReportsDashboard";
-import ApprovalQueue from "../pages/ApprovalQueue";
-import FuelApprovalQueue from "../pages/FuelApprovalQueue";
+// src/layouts/CorporateLayout.tsx  (REPLACE TO REMOVE MISSING FuelApprovalQueue IMPORT)
+import AppShell from "../app/AppShell";
+import ApprovalQueue from "../modules/approvals/pages/ApprovalQueue";
+import FuelReviewQueue from "../modules/fuel/pages/FuelReviewQueue";
 
 export default function CorporateLayout() {
-  const [page, setPage] = useState<"reports" | "bookings" | "fuel">("reports");
-
   return (
     <AppShell
-      title="Corporate Resource"
-      nav={[
-        { label: "Reports", onClick: () => setPage("reports") },
-        { label: "Booking Approvals", onClick: () => setPage("bookings") },
-        { label: "Fuel Approvals", onClick: () => setPage("fuel") },
+      title="Corporate"
+      navItems={[
+        { label: "Booking Approvals", element: <ApprovalQueue /> },
+        { label: "Fuel Approvals", element: <FuelReviewQueue /> },
       ]}
-    >
-      {page === "reports" && <ReportsDashboard />}
-      {page === "bookings" && <ApprovalQueue />}
-      {page === "fuel" && <FuelApprovalQueue />}
-    </AppShell>
+    />
   );
 }
